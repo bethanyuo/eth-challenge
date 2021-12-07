@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/bethanyuo/eth-challenge/issues"
   },
-  "homepage": "https://github.com/bethanyuo/eth-challenge#readme"
+  "homepage": "https://github.com/bethanyuo/eth-challenge#readme",
+  "devDependencies": {
+    "hardhat": "^2.7.0"
+  }
 }
