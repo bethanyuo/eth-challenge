@@ -17,8 +17,8 @@ contract NEWToken is ERC20 {
         _mint(owner, 1000);
         _startTime = block.timestamp;
         _endTime = _startTime + 3 minutes;
-        hasStarted;
-        !hasEnded;
+        hasStarted = true;
+        hasEnded = false;
     }
 
     modifier timeCheck() {
