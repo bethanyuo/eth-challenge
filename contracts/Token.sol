@@ -14,7 +14,7 @@ contract NEWToken is ERC20 {
         owner = address(this);
         _mint(owner, 1000);
         _startTime = block.timestamp;
-        _endTime = _startTime + 4 minutes;
+        _endTime = _startTime + 3 minutes;
     }
 
     modifier timeCheck() {
