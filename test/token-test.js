@@ -7,7 +7,7 @@ describe("NEWToken", function () {
     const token = await Token.deploy();
     await token.deployed();
 
-    expect(await token._startTime()).to.equal(block.timestamp);
+    expect(await token._startTime).to.equal(block.timestamp);
     // expect(await token.transferr()).to.equal("Hello, world!");
 
     // const setGreetingTx = await greeter.setGreeting("Hola, mundo!");

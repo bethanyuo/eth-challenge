@@ -3,7 +3,7 @@ pragma solidity ^0.8.0;
 
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 
-contract NewtonToken is ERC20 {
+contract NEWToken is ERC20 {
     uint256 _startTime;
     uint256 _endTime;
     address owner;

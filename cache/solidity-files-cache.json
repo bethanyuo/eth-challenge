@@ -2,8 +2,8 @@
   "_format": "hh-sol-cache-2",
   "files": {
     "/Users/Beth/git/eth-challenge/contracts/Contribution.sol": {
-      "lastModificationDate": 1638958846178,
-      "contentHash": "daaeacd8f033f1ee52d77d28062226a8",
+      "lastModificationDate": 1638963989882,
+      "contentHash": "9cc085c8fa7c8af981653e19b4cf091f",
       "sourceName": "contracts/Contribution.sol",
       "solcConfig": {
         "version": "0.8.4",
@@ -39,8 +39,8 @@
       ]
     },
     "/Users/Beth/git/eth-challenge/contracts/Token.sol": {
-      "lastModificationDate": 1638960812044,
-      "contentHash": "e3cae23e8080cf4638e953659ea61716",
+      "lastModificationDate": 1638963863223,
+      "contentHash": "433398a8c0e15f36359cff35d131dfa9",
       "sourceName": "contracts/Token.sol",
       "solcConfig": {
         "version": "0.8.4",
@@ -72,7 +72,7 @@
         "^0.8.0"
       ],
       "artifacts": [
-        "NEWToken"
+        "NewtonToken"
       ]
     },
     "/Users/Beth/git/eth-challenge/node_modules/@openzeppelin/contracts/token/ERC20/ERC20.sol": {
@@ -222,8 +222,8 @@
       ]
     },
     "/Users/Beth/git/eth-challenge/contracts/Inheritance.sol": {
-      "lastModificationDate": 1638955397969,
-      "contentHash": "d39a6eb60010728e698d91f162186b5d",
+      "lastModificationDate": 1638964008933,
+      "contentHash": "d491d7d9d24b2777e9e0a4dc05267c20",
       "sourceName": "contracts/Inheritance.sol",
       "solcConfig": {
         "version": "0.8.4",
@@ -256,7 +256,7 @@
       ],
       "artifacts": [
         "Contribution",
-        "NEWToken"
+        "NewtonToken"
       ]
     },
     "/Users/Beth/git/eth-challenge/contracts/Greeter.sol": {

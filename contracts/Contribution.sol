@@ -4,7 +4,7 @@ pragma solidity ^0.8.0;
 import "./Token.sol";
 
 contract Contribution {
-    NewtonToken _token;
+    NEWToken _token;
 
     constructor() payable {}
     
