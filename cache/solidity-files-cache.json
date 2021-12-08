@@ -2,8 +2,8 @@
   "_format": "hh-sol-cache-2",
   "files": {
     "/Users/Beth/git/eth-challenge/contracts/Contribution.sol": {
-      "lastModificationDate": 1638963989882,
-      "contentHash": "9cc085c8fa7c8af981653e19b4cf091f",
+      "lastModificationDate": 1638964449386,
+      "contentHash": "daaeacd8f033f1ee52d77d28062226a8",
       "sourceName": "contracts/Contribution.sol",
       "solcConfig": {
         "version": "0.8.4",
@@ -39,8 +39,8 @@
       ]
     },
     "/Users/Beth/git/eth-challenge/contracts/Token.sol": {
-      "lastModificationDate": 1638963863223,
-      "contentHash": "433398a8c0e15f36359cff35d131dfa9",
+      "lastModificationDate": 1638972442206,
+      "contentHash": "52f530e050edc9610c772c5d0c971d4f",
       "sourceName": "contracts/Token.sol",
       "solcConfig": {
         "version": "0.8.4",
@@ -72,7 +72,7 @@
         "^0.8.0"
       ],
       "artifacts": [
-        "NewtonToken"
+        "NEWToken"
       ]
     },
     "/Users/Beth/git/eth-challenge/node_modules/@openzeppelin/contracts/token/ERC20/ERC20.sol": {
