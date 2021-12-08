@@ -4,7 +4,6 @@ pragma solidity ^0.8.0;
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 
 contract NEWToken is ERC20 {
-    string private greeting;
     uint256 _startTime;
     uint256 _endTime;
     address owner;
@@ -22,19 +21,22 @@ contract NEWToken is ERC20 {
         rateOfTokensToGivePerEth = 10;
     }
 
-    event Auction(address tokenHolder, uint cost, uint tokenBalance);
-
-    //constructor() public payable {}
-
     modifier timeCheck() {
         require(_endTime >= block.timestamp, "Auction Time is Over");
         _;
     }
 
-    modifier onlyOwner() {
-        require(owner == msg.sender, "Only Auction Owner is authorized");
-        _;
-    }
+}
+
+contract Contribution is NEWToken {
+    event Auction(address tokenHolder, uint cost, uint tokenBalance);
+
+    //constructor() public payable {}
+
+    // modifier onlyOwner() {
+    //     require(owner == msg.sender, "Only Auction Owner is authorized");
+    //     _;
+    // }
 
     function buyTokens() public payable timeCheck {
         uint tokens = rateOfTokensToGivePerEth * (msg.value / 1 ether);
@@ -50,12 +52,12 @@ contract NEWToken is ERC20 {
         return tokenBalances[msg.sender];
     }
 
-    function currentSupply() public view onlyOwner returns (uint tokensLeft) {
-        return tokenBalances[owner];
-    }
+    // function currentSupply() public view onlyOwner returns (uint tokensLeft) {
+    //     return tokenBalances[owner];
+    // }
 
-    function auctionBalance() public view onlyOwner returns (uint profits) {
-        return address(this).balance;
-    }
+    // function auctionBalance() public view onlyOwner returns (uint profits) {
+    //     return address(this).balance;
+    // }
 
 }
