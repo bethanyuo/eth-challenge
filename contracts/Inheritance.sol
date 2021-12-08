@@ -22,7 +22,7 @@ contract NewtonToken is ERC20 {
 
 }
 
-contract Contribution is NewtonToken {
+contract ContributionExample is NewtonToken {
 
     constructor() payable {}
     

@@ -8,7 +8,8 @@ contract Contribution {
 
     constructor() payable {}
     
-    mapping(address => uint256) private balance;
+    mapping(address => uint256) public balance;
+
     event Auction(address requestor, uint cost, uint tokens);
 
     modifier price() {
@@ -16,10 +17,11 @@ contract Contribution {
         _;
     }
 
-    function exchange(address recipient, uint amount) public payable price {
+    function exchange(address recipient, uint amount) public payable price returns (bool success) {
         _token.transferr(recipient, amount);
         balance[msg.sender] += msg.value;
         emit Auction(msg.sender, msg.value, amount);
+        return true;
     }
 
 

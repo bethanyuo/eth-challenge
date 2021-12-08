@@ -10,7 +10,7 @@ contract NEWToken is ERC20 {
     bool public hasEnded;
     address public owner;
 
-    event Transfers(address recipient, uint tokensSent, uint currentTime);
+    event Transfers(address recipient, uint tokensSent);
    
     constructor() ERC20("Newton", "NEW") {
         owner = address(this);
@@ -29,7 +29,7 @@ contract NEWToken is ERC20 {
 
     function transferr(address recipient, uint256 amount) public timeCheck {
         _transfer(owner, recipient, amount);
-        emit Transfers(recipient, amount, block.timestamp);
+        emit Transfers(recipient, amount);
     }
 
 }
