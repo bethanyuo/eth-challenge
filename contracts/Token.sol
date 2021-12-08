@@ -8,7 +8,7 @@ contract NEWToken is ERC20 {
     uint256 public _endTime;
     bool public hasStarted;
     bool public hasEnded;
-    address owner;
+    address public owner;
 
     event Transfers(address recipient, uint tokensSent, uint currentTime);
    

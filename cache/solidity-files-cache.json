@@ -39,8 +39,8 @@
       ]
     },
     "/Users/Beth/git/eth-challenge/contracts/Token.sol": {
-      "lastModificationDate": 1638973523786,
-      "contentHash": "140a5f1a76d804e789235c91f57968dd",
+      "lastModificationDate": 1638975923838,
+      "contentHash": "15f48cb97ac44525c886b196d9e77b90",
       "sourceName": "contracts/Token.sol",
       "solcConfig": {
         "version": "0.8.4",

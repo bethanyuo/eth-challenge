@@ -22,25 +22,17 @@ describe( "NEWToken", function () {
         await transferTkns.wait();
     
         expect(await token.balanceOf(walletTo.address)).to.gte(1);
+        expect(await token.balanceOf(token.owner())).to.equal(999);
     } );
 
     it( "Should stop transfer at ending time", async () => {
         const Token = await ethers.getContractFactory( "NEWToken" );
         const token = await Token.deploy();
         await token.deployed();
+        const _closed = await token.hasEnded();
 
-        //if 
-        // startTime = (await time.latest());
-        // endTime = (await time.latest()).add(time.duration.minutes(3));
-
-        // expect( await token._startTime ).to.equal( startTime );
-        // expect(await token.transferr()).to.equal("Hello, world!");
-
-        // const setGreetingTx = await greeter.setGreeting("Hola, mundo!");
-
-        // // wait until the transaction is mined
-        // await setGreetingTx.wait();
-
-        // expect(await greeter.greet()).to.equal("Hola, mundo!");
+        if (_closed) {
+            await expect(token.transferr(walletTo.address, 5)).to.be.revertedWith('Contribution Time is now closed');
+        }
     } );
 } );
