@@ -7,57 +7,40 @@ contract NEWToken is ERC20 {
     uint256 _startTime;
     uint256 _endTime;
     address owner;
-    mapping (address => uint) tokenBalances;
-    uint public initialSupply;
-    uint rateOfTokensToGivePerEth;
-
+   
     constructor() ERC20("Newton", "NEW") {
-        _mint(msg.sender, 1000);
+        owner = msg.sender;
+        _mint(owner, 1000);
         _startTime = block.timestamp;
         _endTime = _startTime + 4 minutes;
-        owner = msg.sender;
-        initialSupply = 1000;
-        tokenBalances[owner] = initialSupply;
-        rateOfTokensToGivePerEth = 10;
     }
 
     modifier timeCheck() {
-        require(_endTime >= block.timestamp, "Auction Time is Over");
+        require(_endTime >= block.timestamp, "Contribution Time is Over");
         _;
     }
 
 }
 
 contract Contribution is NEWToken {
-    event Auction(address tokenHolder, uint cost, uint tokenBalance);
 
-    //constructor() public payable {}
+    constructor() payable {}
+    
+    event Auction(address requestor, uint cost, uint tokensSent);
 
-    // modifier onlyOwner() {
-    //     require(owner == msg.sender, "Only Auction Owner is authorized");
-    //     _;
-    // }
-
-    function buyTokens() public payable timeCheck {
-        uint tokens = rateOfTokensToGivePerEth * (msg.value / 1 ether);
-        require(tokens <= initialSupply, "Token Underflow");
-        require(tokenBalances[msg.sender] + tokens >= tokenBalances[msg.sender], "Token Overflow");
-        tokenBalances[owner] -= tokens;
-        tokenBalances[msg.sender] += tokens;
-
-        emit Auction(msg.sender, msg.value, tokenBalances[msg.sender]);
+    modifier price() {
+        require(msg.value > 0, "Not enough ETH");
+        _;
     }
 
-    function getBalance() public view returns (uint tokens) {
-        return tokenBalances[msg.sender];
+    function exchange(address recipient, uint amount) public payable price timeCheck {
+        _transfer(owner, recipient, amount);
+        emit Auction(msg.sender, msg.value, amount);
     }
 
-    // function currentSupply() public view onlyOwner returns (uint tokensLeft) {
-    //     return tokenBalances[owner];
-    // }
 
-    // function auctionBalance() public view onlyOwner returns (uint profits) {
-    //     return address(this).balance;
-    // }
+    function getBalance() public view returns (uint tokensOwned) {
+        return balanceOf(msg.sender);
+    }
 
 }
