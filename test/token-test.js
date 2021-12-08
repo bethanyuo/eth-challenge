@@ -2,18 +2,19 @@ const { expect } = require("chai");
 const { ethers } = require("hardhat");
 
 describe("NEWToken", function () {
-  it("Should return the new greeting once it's changed", async function () {
+  it("Should transfer tokens during set timeframe", async function () {
     const Token = await ethers.getContractFactory("NEWToken");
-    const token = await Token.deploy("Hello, world!");
-    await greeter.deployed();
+    const token = await Token.deploy();
+    await token.deployed();
 
-    expect(await greeter.greet()).to.equal("Hello, world!");
+    expect(await token._startTime()).to.equal(block.timestamp);
+    // expect(await token.transferr()).to.equal("Hello, world!");
 
-    const setGreetingTx = await greeter.setGreeting("Hola, mundo!");
+    // const setGreetingTx = await greeter.setGreeting("Hola, mundo!");
 
-    // wait until the transaction is mined
-    await setGreetingTx.wait();
+    // // wait until the transaction is mined
+    // await setGreetingTx.wait();
 
-    expect(await greeter.greet()).to.equal("Hola, mundo!");
+    // expect(await greeter.greet()).to.equal("Hola, mundo!");
   });
 });
