@@ -5,8 +5,10 @@ import "./Token.sol";
 
 contract Contribution {
     NEWToken _token;
+
     constructor() payable {}
     
+    mapping(address => uint256) private balance;
     event Auction(address requestor, uint cost, uint tokens);
 
     modifier price() {
@@ -16,12 +18,13 @@ contract Contribution {
 
     function exchange(address recipient, uint amount) public payable price {
         _token.transferr(recipient, amount);
+        balance[msg.sender] += msg.value;
         emit Auction(msg.sender, msg.value, amount);
     }
 
 
-    function getBalance() public view returns (uint tokensOwned) {
-        return _token.balanceOf(msg.sender);
+    function getBalance(address wallet) public view returns (uint ethSpent) {
+        return balance[wallet];
     }
 
 }
