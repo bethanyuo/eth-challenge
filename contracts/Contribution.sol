@@ -4,19 +4,24 @@ pragma solidity ^0.8.0;
 import "./Token.sol";
 
 contract Contribution {
-    string private greeting;
+    NEWToken _token;
+    constructor() payable {}
+    
+    event Auction(address requestor, uint cost, uint tokens);
 
-    constructor(string memory _greeting) {
-        
-        greeting = _greeting;
+    modifier price() {
+        require(msg.value > 0, "Not enough ETH");
+        _;
     }
 
-    function greet() public view returns (string memory) {
-        return greeting;
+    function exchange(address recipient, uint amount) public payable price {
+        _token.transferr(recipient, amount);
+        emit Auction(msg.sender, msg.value, amount);
     }
 
-    function setGreeting(string memory _greeting) public {
-        
-        greeting = _greeting;
+
+    function getBalance() public view returns (uint tokensOwned) {
+        return _token.balanceOf(msg.sender);
     }
+
 }

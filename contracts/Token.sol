@@ -7,6 +7,8 @@ contract NEWToken is ERC20 {
     uint256 _startTime;
     uint256 _endTime;
     address owner;
+
+    event Transfers(address recipient, uint tokensSent, uint currentTime);
    
     constructor() ERC20("Newton", "NEW") {
         owner = address(this);
@@ -22,6 +24,7 @@ contract NEWToken is ERC20 {
 
     function transferr(address recipient, uint256 amount) public timeCheck {
         _transfer(owner, recipient, amount);
+        emit Transfers(recipient, amount, block.timestamp);
     }
 
 }
