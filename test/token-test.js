@@ -9,12 +9,12 @@ describe( "NEWToken", function () {
     let token, currTime;
     const [wallet, walletTo] = new MockProvider().getWallets();
 
-    beforeEach(async () => {
+    beforeEach( async () => {
         const Token = await ethers.getContractFactory( "NEWToken" );
         token = await Token.deploy();
         await token.deployed();
         currTime = new BN( await time.latest() );
-    })
+    } )
 
     it( "Should transfer tokens at starting time", async () => {
         expect( await token.hasStarted() ).to.equal( true );
@@ -27,14 +27,14 @@ describe( "NEWToken", function () {
         expect( await token.balanceOf( token.owner() ) ).to.equal( 999 );
     } );
 
-    //const delay = ms => new Promise( res => setTimeout( res, ms ) );
     it( "Should stop token transfers at ending time", async () => {
-//        setTimeout( 180000 );
-        // const _closed = await token.timeCheck();
-        // expect( _closed ).to.equal( true );
-        //const currTime = new BN( await time.latest() );
-        expect( await token._endTime() ).to.lte( currTime.toNumber() );
-        await expect( token.transferr( walletTo.address, 5 ) ).to.be.revertedWith( 'Contribution Time is now closed' );
+        
+        const _currTime = currTime.add( time.duration.minutes( 5 ) );
+        await time.increaseTo( _currTime );
+        
+        if ( expect( await token._endTime() ).to.lte( _currTime.toNumber() ) ) {
+            await expect( token.transferr( walletTo.address, 5 ) ).to.be.reverted;
+        }
     } );
 
     it( "Should emit successful Transfers event", async () => {
