@@ -29,7 +29,7 @@ contract NEWToken is ERC20 {
         hasEnded = false;
     }
     
-    /// @notice modifier `timeCheck` sets the duration for token transferring
+    /// @notice modifier `timeCheck` sets the time duration for token transferring
     /// @dev boolean hasEnded reassigned once duration is surpassed
     modifier timeCheck() {
         require(_endTime >= block.timestamp, "Contribution Time is Over");
