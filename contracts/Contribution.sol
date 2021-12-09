@@ -23,13 +23,14 @@ contract Contribution {
         require(msg.value > 0, "Not enough ETH");
         _;
     }
-
-    /// @notice Transfers tokens to provided `recipient` address within set time duration
-    /// @dev `balance` maps function callers to the total ETH they've contributed
-    /// @dev event `Auction` emits the function caller, ETH contributed, and token amount exchanged
-    /// @param recipient The address that will receive tokens
-    /// @param amount The amount of tokens to be sent to the `recipient` address
-    /// @return success as boolean once exchange is completed
+    /** 
+    @notice Transfers tokens to provided `recipient` address within set time duration
+    @dev `balance` maps function callers to the total ETH they've contributed
+    @dev event `Auction` emits the function caller, ETH contributed, and token amount exchanged
+    @param recipient The address that will receive tokens
+    @param amount The amount of tokens to be sent to the `recipient` address
+    @return success as boolean once exchange is completed
+    */
     function exchange(address recipient, uint amount) public payable price returns (bool success) {
         _token.transferr(recipient, amount);
         balance[msg.sender] += msg.value;
