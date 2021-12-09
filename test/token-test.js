@@ -8,10 +8,11 @@ describe( "NEWToken", function () {
     // let currTime = Math.floor(Date.now() / 1000)
     const [wallet, walletTo] = new MockProvider().getWallets();
 
-    // beforeEach(async () => {
-    //     startTime = (await time.latest());
-    //     endTime = (await time.latest()).add(time.duration.minutes(3));
-    // })
+    beforeEach(async () => {
+        const Token = await ethers.getContractFactory( "NEWToken" );
+        const token = await Token.deploy();
+        await token.deployed();
+    })
 
     it( "Should transfer tokens at starting time", async () => {
         const Token = await ethers.getContractFactory( "NEWToken" );
