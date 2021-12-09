@@ -6,18 +6,16 @@ const { deployContract, MockProvider, solidity } = require( 'ethereum-waffle' );
 
 describe( "NEWToken", function () {
     // let currTime = Math.floor(Date.now() / 1000)
+    let token;
     const [wallet, walletTo] = new MockProvider().getWallets();
 
     beforeEach(async () => {
         const Token = await ethers.getContractFactory( "NEWToken" );
-        const token = await Token.deploy();
+        token = await Token.deploy();
         await token.deployed();
     })
 
     it( "Should transfer tokens at starting time", async () => {
-        const Token = await ethers.getContractFactory( "NEWToken" );
-        const token = await Token.deploy();
-        await token.deployed();
         expect( await token.hasStarted() ).to.equal( true );
         expect( await token.hasEnded() ).to.equal( false );
 
@@ -30,9 +28,6 @@ describe( "NEWToken", function () {
 
     //const delay = ms => new Promise( res => setTimeout( res, ms ) );
     it( "Should stop token transfers at ending time", async () => {
-        const Token = await ethers.getContractFactory( "NEWToken" );
-        const token = await Token.deploy();
-        await token.deployed();
 //        setTimeout( 180000 );
         const _closed = await token.hasEnded();
         expect( _closed ).to.equal( true );
@@ -42,9 +37,6 @@ describe( "NEWToken", function () {
     } );
 
     it( "Should emit successful Transfers event", async () => {
-        const Token = await ethers.getContractFactory( "NEWToken" );
-        const token = await Token.deploy();
-        await token.deployed();
         await expect( token.transferr( walletTo.address, 10 ) )
             .to.emit( token, 'Transfers' )
             .withArgs( walletTo.address, 10 );

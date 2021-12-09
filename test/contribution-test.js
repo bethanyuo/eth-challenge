@@ -14,7 +14,7 @@ describe( "Contribution", function () {
     }
 
     beforeEach( async () => {
-        let Contract = await ethers.getContractFactory( "Contribution" );
+        const Contract = await ethers.getContractFactory( "Contribution" );
         contract = await Contract.deploy();
         await contract.deployed();
     } )
