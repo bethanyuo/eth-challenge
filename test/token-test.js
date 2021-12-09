@@ -7,7 +7,7 @@ const { deployContract, MockProvider, solidity } = require( 'ethereum-waffle' );
 describe( "NEWToken", function () {
     // let currTime = Math.floor(Date.now() / 1000)
     let token, currTime;
-    const [wallet, walletTo] = new MockProvider().getWallets();
+    const [walletTo] = new MockProvider().getWallets();
 
     beforeEach( async () => {
         const Token = await ethers.getContractFactory( "NEWToken" );
@@ -31,7 +31,7 @@ describe( "NEWToken", function () {
         
         const _currTime = currTime.add( time.duration.minutes( 5 ) );
         await time.increaseTo( _currTime );
-        
+
         if ( expect( await token._endTime() ).to.lte( _currTime.toNumber() ) ) {
             await expect( token.transferr( walletTo.address, 5 ) ).to.be.reverted;
         }
