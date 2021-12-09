@@ -6,19 +6,20 @@ const { deployContract, MockProvider, solidity } = require( 'ethereum-waffle' );
 
 describe( "NEWToken", function () {
     // let currTime = Math.floor(Date.now() / 1000)
-    let token;
+    let token, currTime;
     const [wallet, walletTo] = new MockProvider().getWallets();
 
     beforeEach(async () => {
         const Token = await ethers.getContractFactory( "NEWToken" );
         token = await Token.deploy();
         await token.deployed();
+        currTime = new BN( await time.latest() );
     })
 
     it( "Should transfer tokens at starting time", async () => {
         expect( await token.hasStarted() ).to.equal( true );
         expect( await token.hasEnded() ).to.equal( false );
-
+        expect( await token._endTime() ).to.gte( currTime.toNumber() );
         const transferTkns = await token.transferr( walletTo.address, 1 );
         await transferTkns.wait();
 
@@ -29,9 +30,9 @@ describe( "NEWToken", function () {
     //const delay = ms => new Promise( res => setTimeout( res, ms ) );
     it( "Should stop token transfers at ending time", async () => {
 //        setTimeout( 180000 );
-        const _closed = await token.hasEnded();
-        expect( _closed ).to.equal( true );
-        const currTime = new BN( await time.latest() );
+        // const _closed = await token.timeCheck();
+        // expect( _closed ).to.equal( true );
+        //const currTime = new BN( await time.latest() );
         expect( await token._endTime() ).to.lte( currTime.toNumber() );
         await expect( token.transferr( walletTo.address, 5 ) ).to.be.revertedWith( 'Contribution Time is now closed' );
     } );
