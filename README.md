@@ -1,6 +1,13 @@
-# Basic Sample Hardhat Project
+# Solidity Challenge
 
-This project demonstrates a basic Hardhat use case. It comes with a sample contract, a test for that contract, a sample script that deploys that contract, and an example of a task implementation, which simply lists the available accounts.
+This project implements two Solidity-based smart contracts, as shown below:
+
+1. NEWToken Contract
+
+2. Contribution Contract
+
+
+These smart contracts were coupled with a unit test for each contract.
 
 Try running some of the following tasks:
 
